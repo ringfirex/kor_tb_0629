@@ -2,19 +2,46 @@ package com.ll;
 
 import java.util.Scanner;
 
+
+//2단계 : 등록
+//== 명언 앱 ==
+//명령) 등록
+//명언 : 현재를 사랑하라.
+//작가 : 작자미상
+//명령) 종료
+
 class App {
   void run() {
+    Scanner sc = new Scanner(System.in);
+
+    String str1;
+    String str4;
+
     System.out.println("== 명언 앱 ==");
-    //System.out.println("");
+    while(true) {
+      System.out.print("명령) ");
+      str1 = sc.nextLine();
+      if(str1.equals("등록")) {
+        break;
+      }
+    }
 
-    System.out.print("명령) ");
+    System.out.print("명언 : ");
+    sc.nextLine();
 
-    Scanner scanner = new Scanner(System.in);
-    String cmd = scanner.nextLine();
+    System.out.print("작가 : ");
+    sc.nextLine();
 
-    System.out.printf("입력하신 명령 : %s\n", cmd);
-    //위 라인과 아래 라인과 같은 의미
-    // System.out.println("입력하신 명령 : " + cmd);
+    while(true) {
+      System.out.print("명령) ");
+      str4 = sc.nextLine();
+      if(str4.equals("종료")) {
+        break;
+      }
+    }
+
+    sc.close();
+    System.out.println("== 종료 되었습니다 ==");
 
   }
 }
