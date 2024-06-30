@@ -1,26 +1,35 @@
 package com.ll;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-//- 4단계 : 등록할때 마다 생성되는 명언번호가 증가
+//- 5단계 : 목록
 //== 명언 앱 ==
 //명령) 등록
 //명언 : 현재를 사랑하라.
 //작가 : 작자미상
 //1번 명언이 등록되었습니다.
 //명령) 등록
-//명언 : 현재를 사랑하라.
+//명언 : 과거에 집착하지 마라.
 //작가 : 작자미상
 //2번 명언이 등록되었습니다.
+//명령) 목록
+//번호 / 작가 / 명언
+//----------------------
+//2 / 작자미상 / 과거에 집착하지 마라.
+//1 / 작자미상 / 현재를 사랑하라.
 //명령) 종료
 
 class App {
   void run() {
     Scanner sc = new Scanner(System.in);
     String strcmd;
-    String str2;
-    String str3;
-    int i = 0;
+    int num = 0;
+
+    // 저장하기 위하여
+    List<String> list1 = new ArrayList<>();
+    List<String> list2 = new ArrayList<>();
 
     System.out.println("== 명언 앱 ==");
 
@@ -29,14 +38,18 @@ class App {
       strcmd = sc.nextLine();
 
       if(strcmd.equals("등록")) {
-        i++;
+        num++;
 
         System.out.print("명언 : ");
-        str2 = sc.nextLine();
-        System.out.print("작가 : ");
-        str3 = sc.nextLine();
+        String str1 = new String(sc.nextLine());
 
-        System.out.println(i + "번 명언이 등록되었습니다.");
+        System.out.print("작가 : ");
+        String str2 = new String(sc.nextLine());
+
+        list1.add(str1);
+        list2.add(str2);
+
+        System.out.println(num + "번 명언이 등록되었습니다.");
 
         strcmd = "";
         continue;
@@ -46,6 +59,24 @@ class App {
         break;
       }
     }
-    System.out.println("== 종료 되었습니다 ==");
+
+    System.out.println(list1.size());
+
+    System.out.println("번호 / 작가 / 명언");
+    System.out.println("--------------------------------------");
+
+    // 디버깅 확인용
+    //for (String e : list1) {
+    //  System.out.println(e);
+    //}
+
+    for(int i = 0; i < list1.size(); i++) {
+      System.out.print((i+1) + " / ");
+      System.out.print( list2.get(i) + " / ");
+      System.out.print( list1.get(i) );
+      System.out.println();
+    }
+
+    System.out.println("======================================");
   }
 }
