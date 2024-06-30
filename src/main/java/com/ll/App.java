@@ -2,13 +2,13 @@ package com.ll;
 
 import java.util.Scanner;
 
-
-//2단계 : 등록
-//== 명언 앱 ==
-//명령) 등록
-//명언 : 현재를 사랑하라.
-//작가 : 작자미상
-//명령) 종료
+// - 3단계 : 등록시 생성된 명언번호 노출
+// == 명언 앱 ==
+// 명령) 등록
+// 명언 : 현재를 사랑하라.
+// 작가 : 작자미상
+// 1번 명언이 등록되었습니다.
+// 명령) 종료
 
 class App {
   void run() {
@@ -27,10 +27,12 @@ class App {
     }
 
     System.out.print("명언 : ");
-    sc.nextLine();
+    String str2 = sc.nextLine();
 
     System.out.print("작가 : ");
-    sc.nextLine();
+    String str3 = sc.nextLine();
+
+    System.out.println("1번 명언이 등록되었습니다.");
 
     while(true) {
       System.out.print("명령) ");
