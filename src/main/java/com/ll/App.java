@@ -22,61 +22,61 @@ import java.util.Scanner;
 //명령) 종료
 
 class App {
-  void run() {
-    Scanner sc = new Scanner(System.in);
-    String strcmd;
-    int num = 0;
+    void run() {
+        Scanner sc = new Scanner(System.in);
+        String strcmd;
+        int num = 0;
 
-    // 저장하기 위하여
-    List<String> list1 = new ArrayList<>();
-    List<String> list2 = new ArrayList<>();
+        // 저장하기 위하여
+        List<String> list1 = new ArrayList<>();
+        List<String> list2 = new ArrayList<>();
 
-    System.out.println("== 명언 앱 ==");
+        System.out.println("== 명언 앱 ==");
 
-    while(true) {
-      System.out.print("명령) ");
-      strcmd = sc.nextLine();
+        while (true) {
+            System.out.print("명령) ");
+            strcmd = sc.nextLine();
 
-      if(strcmd.equals("등록")) {
-        num++;
+            if (strcmd.equals("등록")) {
+                num++;
 
-        System.out.print("명언 : ");
-        String str1 = new String(sc.nextLine());
+                System.out.print("명언 : ");
+                String str1 = new String(sc.nextLine());
 
-        System.out.print("작가 : ");
-        String str2 = new String(sc.nextLine());
+                System.out.print("작가 : ");
+                String str2 = new String(sc.nextLine());
 
-        list1.add(str1);
-        list2.add(str2);
+                list1.add(str1);
+                list2.add(str2);
 
-        System.out.println(num + "번 명언이 등록되었습니다.");
+                System.out.println(num + "번 명언이 등록되었습니다.");
 
-        strcmd = "";
-        continue;
-      }
+                strcmd = "";
+                continue;
+            }
 
-      if(strcmd.equals("종료")) {
-        break;
-      }
+            if (strcmd.equals("종료")) {
+                break;
+            }
+        }
+
+        System.out.println(list1.size());
+
+        System.out.println("번호 / 작가 / 명언");
+        System.out.println("--------------------------------------");
+
+        // 디버깅 확인용
+        //for (String e : list1) {
+        //  System.out.println(e);
+        //}
+
+        for (int i = 0; i < list1.size(); i++) {
+            System.out.print((i + 1) + " / ");
+            System.out.print(list2.get(i) + " / ");
+            System.out.print(list1.get(i));
+            System.out.println();
+        }
+
+        System.out.println("======================================");
     }
-
-    System.out.println(list1.size());
-
-    System.out.println("번호 / 작가 / 명언");
-    System.out.println("--------------------------------------");
-
-    // 디버깅 확인용
-    //for (String e : list1) {
-    //  System.out.println(e);
-    //}
-
-    for(int i = 0; i < list1.size(); i++) {
-      System.out.print((i+1) + " / ");
-      System.out.print( list2.get(i) + " / ");
-      System.out.print( list1.get(i) );
-      System.out.println();
-    }
-
-    System.out.println("======================================");
-  }
 }
