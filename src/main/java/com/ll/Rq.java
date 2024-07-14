@@ -1,37 +1,39 @@
 package com.ll;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Rq {
     String cmd;
     String action;
     String queryString;
-    List<String> paramNames;
-    List<String> paramValues;
+    Map<String, String> paramsMap;
+
 
     Rq(String cmd) {
-        paramNames = new ArrayList<>();
-        paramValues = new ArrayList<>();
+        paramsMap = new HashMap<>();
 
         this.cmd = cmd;
 
         String[] cmdBits = cmd.split("\\?", 2);
         action = cmdBits[0].trim();
+
+        if (cmdBits.length == 1) { // ? 없어서 cmdBits에 배열에 요소가 하나뿐인 경우
+            return;
+        }
+
         queryString = cmdBits[1].trim();
 
         String[] queryStringBits = queryString.split("&");
 
-        // for (int i = 0; i < queryStringBits.length; i++) {
-        for (String queryParamStr : queryStringBits) {
-            // String queryParamStr = queryStringBits[i];
+        for (int i = 0; i < queryStringBits.length; i++) {
+            String queryParamStr = queryStringBits[i];
             String[] queryParamStrBits = queryParamStr.split("=", 2);
 
             String paramName = queryParamStrBits[0];
             String paramValue = queryParamStrBits[1];
 
-            paramNames.add(paramName);
-            paramValues.add(paramValue);
+            paramsMap.put(paramName, paramValue);
         }
     }
 
@@ -40,16 +42,15 @@ public class Rq {
     }
 
     public int getParamAsInt(String paramName, int defaultValue) {
-        int index = paramNames.indexOf(paramName);
+        String paramValue = paramsMap.get(paramName);
 
-        if (index == -1) return defaultValue;
+        if (paramValue != null) {
+            try {
+                return Integer.parseInt(paramValue);
+            } catch (NumberFormatException e) {
 
-        String paramValue = paramValues.get(index);
-
-        try {
-            return Integer.parseInt(paramValue);
-        } catch (NumberFormatException e) {
-            return defaultValue;
+            }
         }
+        return defaultValue;
     }
 }
